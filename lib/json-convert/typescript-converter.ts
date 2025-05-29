@@ -20,7 +20,7 @@ export function generateTypeScript(json: any, rootName = "Root"): string {
     }
   }
 
-  return `interface ${rootName} ${generateTypeScriptInlineType(json, 0)}`
+  return `export interface ${rootName} ${generateTypeScriptInlineType(json, 0)}`
 }
 
 /**
