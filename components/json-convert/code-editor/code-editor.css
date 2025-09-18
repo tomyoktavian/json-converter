@@ -1,0 +1,46 @@
+/* hide with attribute svg aria-label="Codeium Logo" */
+svg[aria-label="Codeium Logo"] {
+  display: none;
+}
+
+/* Memastikan editor mengisi ruang dengan benar */
+.monaco-editor {
+  height: 100% !important;
+  min-height: 100px !important;
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.monaco-editor-container {
+  height: 100% !important;
+  min-height: 100px !important;
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+/* Memastikan container editor mengisi ruang dengan benar */
+.codeium-monaco-editor {
+  height: 100% !important;
+  min-height: 100px !important;
+  display: flex;
+  flex-direction: column;
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+/* Memastikan container editor mengisi seluruh ruang parent */
+.editor-container {
+  position: relative !important;
+  height: 100% !important;
+  min-height: 100px !important;
+  flex: 1 !important;
+}

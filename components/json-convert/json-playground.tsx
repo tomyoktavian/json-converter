@@ -6,7 +6,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { CodeEditor } from "@/components/json-convert/code-editor"
+import CodeEditor from "@/components/json-convert/code-editor/Code-Editor";
 import { ThemeToggle } from "@/components/theme-toggle"
 import { generateTypeScript } from "@/lib/json-convert/typescript-converter"
 import { generateJava } from "@/lib/json-convert/java-converter"
@@ -284,7 +284,6 @@ export function JsonPlayground() {
               value={jsonInput}
               onChange={handleInputChange}
               language="json"
-              placeholder="Paste your JSON here..."
             />
           </div>
         </div>

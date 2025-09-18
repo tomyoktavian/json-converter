@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { CodeEditor } from "@/components/json-convert/code-editor"
+import CodeEditor from "@/components/json-convert/code-editor/Code-Editor";
 import { generateTypeScript } from "@/lib/json-convert/typescript-converter"
 import { generateJava } from "@/lib/json-convert/java-converter"
 import { generateFlutter } from "@/lib/json-convert/flutter-converter"
@@ -160,7 +160,6 @@ export function JsonConverter() {
                 value={jsonInput}
                 onChange={handleInputChange}
                 language="json"
-                placeholder="Paste your JSON here..."
               />
             </div>
           </div>
@@ -169,24 +168,26 @@ export function JsonConverter() {
             <div className="space-y-2">
               <Label className="text-sm font-medium">Target Language</Label>
               <Tabs defaultValue="typescript" onValueChange={setLanguage} value={language} className="w-full">
-                <TabsList className="grid w-full grid-cols-4">
-                  <TabsTrigger value="typescript" className="flex items-center gap-1">
-                    <span className="hidden sm:inline">TypeScript</span>
-                    <span className="sm:hidden">TS</span>
-                  </TabsTrigger>
-                  <TabsTrigger value="java" className="flex items-center gap-1">
-                    <span className="hidden sm:inline">Java</span>
-                    <span className="sm:hidden">Java</span>
-                  </TabsTrigger>
-                  <TabsTrigger value="flutter" className="flex items-center gap-1">
-                    <span className="hidden sm:inline">Flutter</span>
-                    <span className="sm:hidden">Flutter</span>
-                  </TabsTrigger>
-                  <TabsTrigger value="swift" className="flex items-center gap-1">
-                    <span className="hidden sm:inline">Swift</span>
-                    <span className="sm:hidden">Swift</span>
-                  </TabsTrigger>
-                </TabsList>
+                <div className="overflow-x-auto pb-1">
+                  <TabsList className="inline-flex min-w-full whitespace-nowrap">
+                    <TabsTrigger value="typescript" className="flex items-center gap-1">
+                      <span className="hidden sm:inline">TypeScript</span>
+                      <span className="sm:hidden">TS</span>
+                    </TabsTrigger>
+                    <TabsTrigger value="java" className="flex items-center gap-1">
+                      <span className="hidden sm:inline">Java</span>
+                      <span className="sm:hidden">Java</span>
+                    </TabsTrigger>
+                    <TabsTrigger value="flutter" className="flex items-center gap-1">
+                      <span className="hidden sm:inline">Flutter</span>
+                      <span className="sm:hidden">Flutter</span>
+                    </TabsTrigger>
+                    <TabsTrigger value="swift" className="flex items-center gap-1">
+                      <span className="hidden sm:inline">Swift</span>
+                      <span className="sm:hidden">Swift</span>
+                    </TabsTrigger>
+                  </TabsList>
+                </div>
               </Tabs>
             </div>
 
