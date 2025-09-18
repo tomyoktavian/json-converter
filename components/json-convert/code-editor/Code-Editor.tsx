@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { CodeiumEditor, CodeiumEditorProps } from "@codeium/react-code-editor";
 import "./code-editor.css"
 
@@ -13,36 +13,52 @@ interface CodeEditorProps
   defaultValue?: string;
   language?: string;
   readOnly?: boolean;
+  placeholder?: string;
   onChange?: (value: string) => void;
 };
 
 const CodeEditor: React.FC<CodeEditorProps> = ({
   value,
-  defaultValue = "// Paste your JSON here...",
+  defaultValue = "",
   language = "json",
   height = "80vh",
   onChange,
   readOnly = false,
+  placeholder = "// Paste your JSON here...\n// Write anything here ...",
   ...props
 }) => {
-  const editorContainerRef = React.useRef<HTMLDivElement>(null);
+  const editorContainerRef = useRef<HTMLDivElement>(null);
+  const placeholderRef = useRef<HTMLDivElement>(null);
+  const editorRef = useRef<any>(null);
   const [code, setCode] = useState(value || defaultValue);
 
   useEffect(() => {
     setCode(value || defaultValue);
   }, [defaultValue, value]);
 
-  const handleCodeChange = (newValue: string = "") => {
+  const handleCodeChange = (newValue: string = "", ev?: any) => {
     setCode(newValue);
     if (onChange) {
       onChange(newValue);
     }
+    
+    // Menampilkan atau menyembunyikan placeholder berdasarkan konten editor
+    if (placeholderRef.current) {
+      placeholderRef.current.style.display = newValue ? 'none' : 'block';
+    }
   };
 
   const handleEditorMount = (editor: any, monaco: any) => {
+    editorRef.current = editor;
+    
     setTimeout(() => {
       editor?.getAction("editor.action.formatDocument")?.run();
     }, 300);
+    
+    // Menampilkan placeholder jika editor kosong saat dimuat
+    if (placeholderRef.current) {
+      placeholderRef.current.style.display = code ? 'none' : 'block';
+    }
   };
 
   useEffect(() => {
@@ -69,7 +85,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
     <div
       ref={editorContainerRef}
       className="editor-container"
-      style={{ height: "100%", minHeight: "300px" }}
+      style={{ height: "100%", minHeight: "300px", position: "relative" }}
     >
       <CodeiumEditor
         theme="vs-dark"
@@ -95,6 +111,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({
           },
         }}
       />
+      <div ref={placeholderRef} className="monaco-placeholder">{placeholder}</div>
     </div>
   );
 };

@@ -44,3 +44,18 @@ svg[aria-label="Codeium Logo"] {
   min-height: 100px !important;
   flex: 1 !important;
 }
+
+/* Styling untuk placeholder editor */
+.monaco-placeholder {
+  position: absolute;
+  top: 4px;
+  left: 60px;
+  color: #6a737d;
+  pointer-events: none;
+  font-family: monospace;
+  white-space: pre;
+  z-index: 1;
+  display: none;
+  line-height: 1.5;
+  font-size: 14px;
+}
